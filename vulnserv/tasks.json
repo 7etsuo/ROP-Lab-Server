@@ -1,0 +1,44 @@
+// Social Media Links:
+// - Twitter: https://twitter.com/7etsuo
+// - GitHub: https://github.com/7etsuo
+// - YouTube: https://www.youtube.com/@snowcrash-
+//
+// Author: 7etsuo, 2024
+{
+    "_comment": "This 'tasks.json' configuration compiles the current C file with security settings adjusted for vulnerability testing. ASLR is disabled to make the memory layout predictable, DEP remains enabled to prevent execution of code on the stack, and stack protection is disabled to facilitate buffer overflow exploitation. This setup is intended for educational purposes in a controlled environment.",
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build vulnerable project",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${fileDirname}\\${fileBasename}",
+                "-Wl,-dynamicbase:no", // Disables ASLR (Address Space Layout Randomization)
+                "-Wl,-nxcompat", // Enables DEP (Data Execution Prevention)
+                "-fno-stack-protector" // Disables stack protection (stack cookies)
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "detail": "Compiles the current C file with security settings adjusted for vulnerability testing. ASLR is disabled to make the memory layout predictable, DEP remains enabled to prevent execution of code on the stack, and stack protection is disabled to facilitate buffer overflow exploitation. This setup is intended for educational purposes in a controlled environment."
+        }
+    ]
+}
