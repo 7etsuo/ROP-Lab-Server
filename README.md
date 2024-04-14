@@ -1,16 +1,17 @@
 # Vulnerable TCP Server and Exploit Demonstration
 
-## Social Media
+**7etsuo, 2024**
 
 - [Twitter](https://twitter.com/7etsuo)
 - [GitHub](https://github.com/7etsuo)
 - [YouTube](https://www.youtube.com/@snowcrash-)
 
-## Author
-
-7etsuo, 2024
+---
 
 This repository contains a collection of files designed to demonstrate a buffer overflow exploit using Return-Oriented Programming (ROP) on a purposely vulnerable TCP server. The server is written in C, and the exploit is demonstrated using a Python script.
+
+![image](https://github.com/7etsuo/ROP-Lab-Server/assets/90065760/f057e627-2978-4f53-975e-f47473a20616)
+
 
 ## Warning
 
@@ -111,4 +112,3 @@ Open the command palette in VSCode (Ctrl+Shift+P), type "Run Build Task", and se
 ## Exploit Details
 
 The Python script, `exploit.py`, sends a payload that exploits a buffer overflow vulnerability, manipulating the stack and using ROP to execute arbitrary code through carefully chosen gadgets.
->>>>>>> master
