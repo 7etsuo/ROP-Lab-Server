@@ -2,15 +2,15 @@
 
 **7etsuo, 2024**
 
-- [Twitter](https://twitter.com/7etsuo)
-- [GitHub](https://github.com/7etsuo)
-- [YouTube](https://www.youtube.com/@snowcrash-)
-
 ---
 
 ![image](https://github.com/7etsuo/ROP-Lab-Server/assets/90065760/f057e627-2978-4f53-975e-f47473a20616)
 
 ---
+
+- [Twitter](https://twitter.com/7etsuo)
+- [GitHub](https://github.com/7etsuo)
+- [YouTube](https://www.youtube.com/@snowcrash-)
 
 > This repository contains a collection of files designed to demonstrate a buffer overflow exploit using Return-Oriented Programming (ROP) on a purposely vulnerable TCP server. The server is written in C, and the exploit is demonstrated using a Python script.
 
