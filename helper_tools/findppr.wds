@@ -1,0 +1,76 @@
+$$ usage $$>a< "c:\findppr.wds" "00400000" "00463000"
+.block 
+{
+    $$ inner loop
+    r @$t0 = 0
+    $$ unused
+    r @$t1 = 0
+    $$ ret opcode
+    r @$t2 = 0
+    $$ address of start opcode
+    r @$t3 = 0
+    $$ opcode offset
+    r @$t4 = 0
+    $$ outter loop
+    r @$t5 = 0
+    $$ arg1
+    r @$t6 = 0 
+    $$ arg2
+    r @$t7 = 0
+
+    r @$t2 = 0xc3
+    r @$t3 = 0x58
+    r @$t4 = 1
+
+    .if ((${/d:$arg1}) and (${/d:$arg2})) {
+        .echo arg1: ${$arg1} .echo arg2: ${$arg2}
+        r @$t6 = ${$arg1}
+        r @$t7 = ${$arg2}
+    }
+
+    .echo ***> Locating PPR in range ${$arg1} to ${$arg2}
+    .for (r @$t5 = @$t3; @$t5 < 0x60; r @$t5 = @$t5 + @$t4)
+    {
+        .for (r @$t0 = @$t3; @$t0 < 0x60; r @$t0 = @$t0 + @$t4)
+        {
+            .if (@$t5 == 0x58) {
+                .printf "***> eax "
+            } .elsif (@$t5 == 0x59) {
+                .printf "***> ecx "
+            } .elsif (@$t5 == 0x5a) {
+                .printf "***> edx "
+            } .elsif (@$t5 == 0x5b) {
+                .printf "***> ebx "
+            } .elsif (@$t5 == 0x5d) {
+                .printf "***> ebp "
+            } .elsif (@$t5 == 0x5e) {
+                .printf "***> esi "
+            } .else { 
+                .printf "***> edi "
+            }
+
+            .if (@$t0 == 0x58) {
+                .printf "eax\n"
+            } .elsif (@$t0 == 0x59) {
+                .printf "ecx\n"
+            } .elsif (@$t0 == 0x5a) {
+                .printf "edx\n"
+            } .elsif (@$t0 == 0x5b) {
+                .printf "ebx\n"
+            } .elsif (@$t0 == 0x5d) {
+                .printf "ebp\n"
+            } .elsif (@$t0 == 0x5e) {
+                .printf "esi\n"
+            } .else {
+                .printf "edi\n"
+            }
+
+            .block
+            {
+                $$ POP32 POP32 RET
+                s -[1]b @$t6 @$t7 @$t5 @$t0 @$t2
+            }
+            .printf "***> \n\n"
+        }
+    }
+}
